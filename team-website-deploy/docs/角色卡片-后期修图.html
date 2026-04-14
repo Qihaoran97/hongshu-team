@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, initial-scale=1.0">
+    <title>后期修图 - 角色卡片</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            width: 1080px;
+            min-height: 1920px;
+            margin: 0 auto;
+            padding: 60px 50px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .role-icon {
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #06b6d4, #22d3ee);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 80px;
+            margin: 0 auto 30px;
+            box-shadow: 0 20px 60px rgba(6, 182, 212, 0.3);
+        }
+        
+        .role-name {
+            font-size: 56px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .role-en {
+            font-size: 24px;
+            color: #666;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+        
+        .divider {
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #06b6d4, transparent);
+            margin: 40px 0;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #06b6d4;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .section-title::before {
+            content: '';
+            width: 6px;
+            height: 32px;
+            background: #06b6d4;
+            border-radius: 3px;
+        }
+        
+        .content {
+            font-size: 22px;
+            line-height: 1.8;
+            color: #ccc;
+        }
+        
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .skill-tag {
+            background: rgba(6, 182, 212, 0.15);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 18px;
+            color: #22d3ee;
+        }
+        
+        .workflow-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .workflow-list li {
+            padding: 20px 0;
+            border-bottom: 1px solid #222;
+            font-size: 22px;
+            color: #ccc;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .workflow-list li::before {
+            content: attr(data-step);
+            width: 40px;
+            height: 40px;
+            background: #06b6d4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+        
+        .call-examples {
+            background: #151515;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 20px;
+        }
+        
+        .example-item {
+            background: #1a1a1a;
+            border-left: 4px solid #06b6d4;
+            padding: 20px 25px;
+            margin-bottom: 15px;
+            border-radius: 0 10px 10px 0;
+            font-size: 20px;
+            color: #aaa;
+            font-family: "SF Mono", monospace;
+        }
+        
+        .example-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #222;
+            text-align: center;
+            color: #666;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="role-icon">🎨</div>
+        <h1 class="role-name">后期修图</h1>
+        <p class="role-en">Photo Retoucher</p>
+    </div>
+    
+    <div class="divider"></div>
+    
+    <div class="section">
+        <h2 class="section-title">角色定位</h2>
+        <p class="content">
+            产品精修专家，负责RAW文件处理、产品精修、调色与视觉统一。擅长科技产品质感增强与瑕疵修复，确保输出图片符合独立站与社媒标准。
+        </p>
+    </div>
+    
+    <div class="section">
+        <h2 class="section-title">核心能力</h2>
+        <div class="skill-tags">
+            <span class="skill-tag">RAW处理</span>
+            <span class="skill-tag">产品精修</span>
+            <span class="skill-tag">瑕疵修复</span>
+            <span class="skill-tag">科技产品调色</span>
+            <span class="skill-tag">批量处理</span>
+            <span class="skill-tag">多平台适配</span>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2 class="section-title">工作范围</h2>
+        <ul class="workflow-list">
+            <li data-step="1">RAW文件导入与筛选</li>
+            <li data-step="2">基础调色与曝光修正</li>
+            <li data-step="3">产品精修与瑕疵修复</li>
+            <li data-step="4">统一视觉风格输出</li>
+            <li data-step="5">多平台尺寸适配</li>
+        </ul>
+    </div>
+    
+    <div class="section">
+        <h2 class="section-title">调用示例</h2>
+        <div class="call-examples">
+            <div class="example-item">"后期修图，帮我把这批芯片照片统一调色"</div>
+            <div class="example-item">"后期修图，这个无人机照片需要修掉反光"</div>
+            <div class="example-item">"后期修图，批量处理这批产品图"</div>
+            <div class="example-item">"后期修图，输出独立站和Instagram两个版本"</div>
+        </div>
+    </div>
+    
+    <div class="section">
+        <h2 class="section-title">专业领域</h2>
+        <p class="content">
+            <strong>修图软件</strong>：Adobe Lightroom（RAW处理）、Photoshop（精修）<br><br>
+            <strong>精修内容</strong>：去瑕疵、修反光、增强质感、统一色调<br><br>
+            <strong>输出规格</strong>：独立站大图、缩略图、社媒方形图、竖版图
+        </p>
+    </div>
+    
+    <div class="footer">
+        <p>产品视觉内容制作团队 | 后期修图</p>
+        <p style="margin-top: 10px;">调用方式：直接提及"后期修图"即可激活</p>
+    </div>
+</body>
+</html>

@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=1080, initial-scale=1.0">
+    <title>产品视觉内容制作团队 - 快速启动指南</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "PingFang SC", sans-serif;
+            background: #0a0a0a;
+            color: #fff;
+            width: 1080px;
+            min-height: 1920px;
+            margin: 0 auto;
+            padding: 60px 50px;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .team-icon {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, #e94560, #6366f1, #10b981);
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 90px;
+            margin: 0 auto 30px;
+            box-shadow: 0 25px 80px rgba(233, 69, 96, 0.3);
+        }
+        
+        .team-name {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #fff, #aaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .team-desc {
+            font-size: 22px;
+            color: #666;
+        }
+        
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #333, transparent);
+            margin: 50px 0;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+        
+        /* 角色卡片网格 */
+        .role-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .role-card {
+            background: linear-gradient(135deg, #1a1a1a, #252525);
+            border: 1px solid #333;
+            border-radius: 20px;
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .role-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+        
+        .role-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .role-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+        
+        .role-avatar.photo { background: linear-gradient(135deg, #e94560, #ff6b6b); }
+        .role-avatar.retouch { background: linear-gradient(135deg, #06b6d4, #22d3ee); }
+        .role-avatar.video { background: linear-gradient(135deg, #6366f1, #8b5cf6); }
+        .role-avatar.edit { background: linear-gradient(135deg, #10b981, #34d399); }
+        .role-avatar.brand { background: linear-gradient(135deg, #f59e0b, #fbbf24); }
+        .role-avatar.ops { background: linear-gradient(135deg, #8b5cf6, #a78bfa); }
+        
+        .role-info h3 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .role-info p {
+            font-size: 14px;
+            color: #888;
+        }
+        
+        .role-desc {
+            font-size: 16px;
+            color: #aaa;
+            line-height: 1.6;
+        }
+        
+        /* 工作流程 */
+        .workflow {
+            background: #151515;
+            border-radius: 20px;
+            padding: 35px;
+        }
+        
+        .workflow-step {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #222;
+        }
+        
+        .workflow-step:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .step-num {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #e94560, #ff6b6b);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        
+        .step-content h4 {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        .step-content p {
+            font-size: 16px;
+            color: #888;
+            line-height: 1.6;
+        }
+        
+        .step-roles {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 12px;
+        }
+        
+        .step-role {
+            background: rgba(233, 69, 96, 0.15);
+            color: #e94560;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+        }
+        
+        /* 快速调用 */
+        .quick-calls {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .call-item {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 12px;
+            padding: 20px 25px;
+            font-family: "SF Mono", monospace;
+            font-size: 18px;
+            color: #aaa;
+            border-left: 4px solid #e94560;
+        }
+        
+        /* 技能列表 */
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 18px 20px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            border: 1px solid #333;
+        }
+        
+        .skill-status {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        
+        .skill-status.ready {
+            background: #10b981;
+            box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+        }
+        
+        .skill-status.user {
+            background: #f59e0b;
+        }
+        
+        .skill-info h4 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+        .skill-info p {
+            font-size: 14px;
+            color: #888;
+        }
+        
+        /* 文件结构 */
+        .file-tree {
+            background: #151515;
+            border-radius: 15px;
+            padding: 25px;
+            font-family: "SF Mono", monospace;
+            font-size: 15px;
+            line-height: 2;
+            color: #888;
+        }
+        
+        .file-tree .folder {
+            color: #e94560;
+        }
+        
+        .file-tree .file {
+            color: #aaa;
+        }
+        
+        .file-tree .indent {
+            margin-left: 25px;
+        }
+        
+        /* 提示框 */
+        .tip-box {
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+        
+        .tip-box h4 {
+            font-size: 20px;
+            color: #10b981;
+            margin-bottom: 15px;
+        }
+        
+        .tip-box p {
+            font-size: 16px;
+            color: #aaa;
+            line-height: 1.8;
+        }
+        
+        .footer {
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #222;
+            text-align: center;
+            color: #666;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="team-icon">🎬</div>
+        <h1 class="team-name">产品视觉内容制作团队</h1>
+        <p class="team-desc">Product Visual Content Production Team</p>
+    </div>
+    
+    <div class="divider"></div>
+    
+    <!-- 团队成员 -->
+    <div class="section">
+        <h2 class="section-title">团队成员</h2>
+        
+        <div class="role-grid">
+            <div class="role-card">
+                <div class="role-header">
+                    <div class="role-avatar photo">📷</div>
+                    <div class="role-info">
+                        <h3>摄影指导</h3>
+                        <p>Photo Director</p>
+                    </div>
+                </div>
+                <p class="role-desc">产品摄影技术专家，负责拍摄方案制定与现场执行</p>
+            </div>
+            
+            <div class="role-card">
+                <div class="role-header">
+                    <div class="role-avatar retouch">🎨</div>
+                    <div class="role-info">
+                        <h3>后期修图</h3>
+                        <p>Photo Retoucher</p>
+                    </div>
+                </div>
+                <p class="role-desc">产品精修专家，负责RAW处理与视觉优化</p>
+            </div>
+            
+            <div class="role-card">
+                <div class="role-header">
+                    <div class="role-avatar video">🎬</div>
+                    <div class="role-info">
+                        <h3>视频导演</h3>
+                        <p>Video Director</p>
+                    </div>
+                </div>
+                <p class="role-desc">视频创意专家，负责脚本与拍摄统筹</p>
+            </div>
+            
+            <div class="role-card">
+                <div class="role-header">
+                    <div class="role-avatar edit">✂️</div>
+                    <div class="role-info">
+                        <h3>剪辑包装</h3>
+                        <p>Video Editor</p>
+                    </div>
+                </div>
+                <p class="role-desc">视频后期专家，负责剪辑调色与动效</p>
+            </div>
+            
+            <div class="role-card">
+                <div class="role-header">
+                    <div class="role-avatar brand">🎯</div>
+                    <div class="role-info">
+                        <h3>品牌策划</h3>
+                        <p>Brand Strategist</p>
+                    </div>
+                </div>
+                <p class="role-desc">品牌视觉专家，负责VI系统与内容策略</p>
+            </div>
+            
+            <div class="role-card">
+                <div class="role-header">
+                    <div class="role-avatar ops">📱</div>
+                    <div class="role-info">
+                        <h3>内容运营</h3>
+                        <p>Content Operator</p>
+                    </div>
+                </div>
+                <p class="role-desc">内容分发专家，负责多平台运营与SEO</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="divider"></div>
+    
+    <!-- 工作流程 -->
+    <div class="section">
+        <h2 class="section-title">标准工作流程</h2>
+        
+        <div class="workflow">
+            <div class="workflow-step">
+                <div class="step-num">1</div>
+                <div class="step-content">
+                    <h4>策略制定</h4>
+                    <p>品牌策划定义视觉风格与内容方向，制定季度/月度内容计划</p>
+                    <div class="step-roles">
+                        <span class="step-role">品牌策划</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-num">2</div>
+                <div class="step-content">
+                    <h4>拍摄执行</h4>
+                    <p>摄影指导制定方案并执行拍摄，输出RAW素材</p>
+                    <div class="step-roles">
+                        <span class="step-role">摄影指导</span>
+                        <span class="step-role">视频导演</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-num">3</div>
+                <div class="step-content">
+                    <h4>后期制作</h4>
+                    <p>后期修图处理图片，剪辑包装制作视频，统一视觉风格</p>
+                    <div class="step-roles">
+                        <span class="step-role">后期修图</span>
+                        <span class="step-role">剪辑包装</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="workflow-step">
+                <div class="step-num">4</div>
+                <div class="step-content">
+                    <h4>内容发布</h4>
+                    <p>内容运营适配多平台规格，执行发布并追踪数据</p>
+                    <div class="step-roles">
+                        <span class="step-role">内容运营</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="divider"></div>
+    
+    <!-- 快速调用 -->
+    <div class="section">
+        <h2 class="section-title">快速调用示例</h2>
+        
+        <div class="quick-calls">
+            <div class="call-item">"摄影指导，帮我制定芯片特写拍摄方案"</div>
+            <div class="call-item">"视频导演，写个30秒无人机展示脚本"</div>
+            <div class="call-item">"后期修图，统一这批产品照片的色调"</div>
+            <div class="call-item">"剪辑包装，把这个素材剪成15秒短视频"</div>
+            <div class="call-item">"品牌策划，定义我们品牌的视觉风格"</div>
+            <div class="call-item">"内容运营，优化产品页面的SEO"</div>
+        </div>
+    </div>
+    
+    <div class="divider"></div>
+    
+    <!-- 技能状态 -->
+    <div class="section">
+        <h2 class="section-title">技能与工具状态</h2>
+        
+        <div class="skill-list">
+            <div class="skill-item">
+                <div class="skill-status ready"></div>
+                <div class="skill-info">
+                    <h4>canvas-design</h4>
+                    <p>视觉设计技能 - 已就绪</p>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-status ready"></div>
+                <div class="skill-info">
+                    <h4>remotion-video-toolkit</h4>
+                    <p>程序化视频生成 - 已就绪</p>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-status ready"></div>
+                <div class="skill-info">
+                    <h4>brand-guidelines</h4>
+                    <p>品牌规范应用 - 已就绪</p>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-status ready"></div>
+                <div class="skill-info">
+                    <h4>content-factory</h4>
+                    <p>多格式内容生产 - 已就绪</p>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-status ready"></div>
+                <div class="skill-info">
+                    <h4>marketing-skills</h4>
+                    <p>营销模块（23个）- 已就绪</p>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-status user"></div>
+                <div class="skill-info">
+                    <h4>Photoshop / Lightroom</h4>
+                    <p>后期修图软件 - 需用户本地安装</p>
+                </div>
+            </div>
+            <div class="skill-item">
+                <div class="skill-status user"></div>
+                <div class="skill-info">
+                    <h4>DaVinci Resolve / 剪映</h4>
+                    <p>视频剪辑软件 - 需用户本地安装</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="divider"></div>
+    
+    <!-- 文件结构 -->
+    <div class="section">
+        <h2 class="section-title">项目文件结构</h2>
+        
+        <div class="file-tree">
+            <div class="folder">📁 团队配置/</div>
+            <div class="indent">
+                <div class="file">📄 产品视觉内容制作团队.md</div>
+                <div class="file">📄 团队快速启动指南.html</div>
+                <div class="file">📄 角色卡片-摄影指导.html</div>
+                <div class="file">📄 角色卡片-后期修图.html</div>
+                <div class="file">📄 角色卡片-视频导演.html</div>
+                <div class="file">📄 角色卡片-剪辑包装.html</div>
+                <div class="file">📄 角色卡片-品牌策划.html</div>
+                <div class="file">📄 角色卡片-内容运营.html</div>
+            </div>
+            <div class="folder">📁 摄影项目/</div>
+            <div class="indent">
+                <div class="folder">📁 拍摄方案/</div>
+                <div class="folder">📁 布光图/</div>
+                <div class="folder">📁 镜头清单/</div>
+            </div>
+            <div class="folder">📁 后期项目/</div>
+            <div class="folder">📁 视频项目/</div>
+            <div class="folder">📁 品牌资产/</div>
+            <div class="folder">📁 内容发布/</div>
+        </div>
+    </div>
+    
+    <div class="tip-box">
+        <h4>💡 使用提示</h4>
+        <p>1. 直接提及角色名称即可激活对应专家<br>
+        2. 复杂项目可同时调用多个角色协作<br>
+        3. 所有产出默认保存为HTML格式，1080×1920适配<br>
+        4. 建议安装Photoshop/Lightroom/DaVinci等软件以发挥完整能力</p>
+    </div>
+    
+    <div class="footer">
+        <p>产品视觉内容制作团队 | 配置版本 v1.0</p>
+        <p style="margin-top: 10px;">创建日期：2026-04-14</p>
+    </div>
+</body>
+</html>

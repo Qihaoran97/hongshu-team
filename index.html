@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>产品视觉内容制作团队 - 知识库</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0F1115;
+            --bg-secondary: rgba(255, 255, 255, 0.03);
+            --bg-tertiary: rgba(255, 255, 255, 0.05);
+            --border-color: rgba(255, 255, 255, 0.06);
+            --text-primary: #ffffff;
+            --text-secondary: #9CA3AF;
+            --text-muted: #6B7280;
+            --accent-primary: #6366F1;
+            --accent-secondary: #8B5CF6;
+            --radius: 16px;
+            --radius-sm: 12px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'SF Pro Display', 'Segoe UI', 'PingFang SC', sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .app {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            left: 0;
+            top: 0;
+        }
+
+        .sidebar-header {
+            padding: 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            font-size: 28px;
+        }
+
+        .logo-text {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 16px 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: var(--radius-sm);
+            background: transparent;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-align: left;
+            text-decoration: none;
+        }
+
+        .nav-item:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        .nav-item.active {
+            background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+            color: white;
+        }
+
+        .nav-icon {
+            font-size: 20px;
+            width: 24px;
+            text-align: center;
+        }
+
+        .sidebar-footer {
+            padding: 20px 24px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .team-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .team-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .team-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-primary);
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 280px;
+            padding: 40px 48px;
+        }
+
+        /* Hero */
+        .hero {
+            text-align: center;
+            padding: 60px 0 80px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.15) 0%, rgba(139, 92, 246, 0.15) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 100px;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: 500;
+            color: #818CF8;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #fff 0%, #A5B4FC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+        }
+
+        .hero-subtitle {
+            font-size: 20px;
+            color: var(--text-muted);
+            margin-bottom: 48px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+        }
+
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 15px;
+            color: var(--text-muted);
+        }
+
+        /* Quick Access */
+        .quick-access {
+            margin-bottom: 60px;
+        }
+
+        .quick-access h2 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 24px;
+            color: var(--text-primary);
+        }
+
+        .quick-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+        }
+
+        .quick-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 28px 24px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .quick-card:hover {
+            background: var(--bg-tertiary);
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .quick-icon {
+            font-size: 36px;
+        }
+
+        .quick-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .quick-count {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        /* Section Content */
+        .section-content {
+            display: none;
+        }
+
+        .section-content.active {
+            display: block;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 40px;
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-icon {
+            font-size: 36px;
+        }
+
+        .section-header h1 {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        /* Document Grid */
+        .document-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .document-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+            padding: 28px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .document-card:hover {
+            background: var(--bg-tertiary);
+            border-color: rgba(99, 102, 241, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .doc-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .doc-type {
+            font-size: 12px;
+            font-weight: 600;
+            color: #818CF8;
+            background: rgba(99, 102, 241, 0.1);
+            padding: 4px 10px;
+            border-radius: 6px;
+        }
+
+        .doc-date {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .doc-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 20px;
+            line-height: 1.5;
+            flex: 1;
+        }
+
+        .doc-footer {
+            margin-top: auto;
+        }
+
+        .doc-action {
+            font-size: 14px;
+            font-weight: 500;
+            color: #818CF8;
+        }
+
+        .document-card:hover .doc-action {
+            color: #A5B4FC;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 80px 40px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius);
+        }
+
+        .empty-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .empty-state p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .empty-hint {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .quick-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .document-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+            
+            .main-content {
+                margin-left: 0;
+            }
+            
+            .app {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero-stats {
+                flex-direction: column;
+                gap: 24px;
+            }
+            
+            .quick-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="app">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <span class="logo-icon">🎬</span>
+                    <span class="logo-text">团队知识库</span>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#home" class="nav-item active" data-section="home">
+                    <span class="nav-icon">🏠</span>
+                    <span class="nav-text">首页</span>
+                </a>
+                <a href="#photography" class="nav-item" data-section="photography">
+                    <span class="nav-icon">📷</span>
+                    <span class="nav-text">产品摄影</span>
+                </a>
+                <a href="#video" class="nav-item" data-section="video">
+                    <span class="nav-icon">🎬</span>
+                    <span class="nav-text">视频制作</span>
+                </a>
+                <a href="#design" class="nav-item" data-section="design">
+                    <span class="nav-icon">🎨</span>
+                    <span class="nav-text">设计规范</span>
+                </a>
+                <a href="#workflow" class="nav-item" data-section="workflow">
+                    <span class="nav-icon">📋</span>
+                    <span class="nav-text">工作流程</span>
+                </a>
+                <a href="#team" class="nav-item" data-section="team">
+                    <span class="nav-icon">👥</span>
+                    <span class="nav-text">团队成员</span>
+                </a>
+            </nav>
+            <div class="sidebar-footer">
+                <div class="team-info">
+                    <span class="team-label">当前团队</span>
+                    <span class="team-name">产品视觉内容制作</span>
+                </div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <!-- Home Section -->
+            <div id="home" class="section-content active">
+                <div class="hero">
+                    <div class="hero-badge">🎬 产品视觉内容制作团队</div>
+                    <h1>团队知识库</h1>
+                    <p class="hero-subtitle">产品摄影 · 视频制作 · 设计规范 · 工作流程</p>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">6</span>
+                            <span class="stat-label">团队成员</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">1</span>
+                            <span class="stat-label">文档资源</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">4</span>
+                            <span class="stat-label">知识分类</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="quick-access">
+                    <h2>快速访问</h2>
+                    <div class="quick-grid">
+                        <a href="#photography" class="quick-card" onclick="showSection('photography')">
+                            <span class="quick-icon">📷</span>
+                            <span class="quick-name">产品摄影</span>
+                            <span class="quick-count">1 个文档</span>
+                        </a>
+                        <a href="#video" class="quick-card" onclick="showSection('video')">
+                            <span class="quick-icon">🎬</span>
+                            <span class="quick-name">视频制作</span>
+                            <span class="quick-count">0 个文档</span>
+                        </a>
+                        <a href="#design" class="quick-card" onclick="showSection('design')">
+                            <span class="quick-icon">🎨</span>
+                            <span class="quick-name">设计规范</span>
+                            <span class="quick-count">0 个文档</span>
+                        </a>
+                        <a href="#workflow" class="quick-card" onclick="showSection('workflow')">
+                            <span class="quick-icon">📋</span>
+                            <span class="quick-name">工作流程</span>
+                            <span class="quick-count">0 个文档</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Photography Section -->
+            <div id="photography" class="section-content">
+                <div class="section-header">
+                    <span class="section-icon">📷</span>
+                    <h1>产品摄影</h1>
+                </div>
+                <div class="document-grid">
+                    <a href="./docs/eos-rp-guide.html" class="document-card" target="_blank">
+                        <div class="doc-header">
+                            <span class="doc-type">拍摄指南</span>
+                            <span class="doc-date">2026-04-14</span>
+                        </div>
+                        <h3 class="doc-title">EOS RP M档产品拍摄操作指南</h3>
+                        <div class="doc-footer">
+                            <span class="doc-action">查看文档 →</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Video Section -->
+            <div id="video" class="section-content">
+                <div class="section-header">
+                    <span class="section-icon">🎬</span>
+                    <h1>视频制作</h1>
+                </div>
+                <div class="empty-state">
+                    <span class="empty-icon">📭</span>
+                    <p>该分类暂无文档</p>
+                    <span class="empty-hint">文档将在此自动显示</span>
+                </div>
+            </div>
+
+            <!-- Design Section -->
+            <div id="design" class="section-content">
+                <div class="section-header">
+                    <span class="section-icon">🎨</span>
+                    <h1>设计规范</h1>
+                </div>
+                <div class="empty-state">
+                    <span class="empty-icon">📭</span>
+                    <p>该分类暂无文档</p>
+                    <span class="empty-hint">文档将在此自动显示</span>
+                </div>
+            </div>
+
+            <!-- Workflow Section -->
+            <div id="workflow" class="section-content">
+                <div class="section-header">
+                    <span class="section-icon">📋</span>
+                    <h1>工作流程</h1>
+                </div>
+                <div class="empty-state">
+                    <span class="empty-icon">📭</span>
+                    <p>该分类暂无文档</p>
+                    <span class="empty-hint">文档将在此自动显示</span>
+                </div>
+            </div>
+
+            <!-- Team Section -->
+            <div id="team" class="section-content">
+                <div class="section-header">
+                    <span class="section-icon">👥</span>
+                    <h1>团队成员</h1>
+                </div>
+                <div class="empty-state">
+                    <span class="empty-icon">📭</span>
+                    <p>角色卡片整理中</p>
+                    <span class="empty-hint">团队成员信息将在此展示</span>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.section-content').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update nav active state
+            document.querySelectorAll('.nav-item').forEach(item => {
+                item.classList.remove('active');
+                if (item.dataset.section === sectionId) {
+                    item.classList.add('active');
+                }
+            });
+            
+            // Update URL hash
+            window.location.hash = sectionId;
+        }
+
+        // Handle nav clicks
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const sectionId = item.dataset.section;
+                showSection(sectionId);
+            });
+        });
+
+        // Handle initial hash
+        if (window.location.hash) {
+            const sectionId = window.location.hash.slice(1);
+            showSection(sectionId);
+        }
+    </script>
+</body>
+</html>
